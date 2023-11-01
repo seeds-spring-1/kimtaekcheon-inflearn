@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class InflearnStudyController {
@@ -23,5 +24,28 @@ public class InflearnStudyController {
     public String doSomething2(@RequestParam(value = "name", required = false) String name, Model model) {
         model.addAttribute("name", name);
         return "hello-template";
+    }
+
+    // ResponseBody 어노테이션은 템플릿을 반환하는게 아니라 데이터만 반환한다.
+    // 데이터를 반환할 때 JSON형태로 변환하여 반환한다.
+    // 근데 문자열만 전달된다면 그냥 문자열만 반환한다.
+    @GetMapping("hello-string")
+    @ResponseBody
+    public String helloString(@RequestParam("name") String name) {
+        return "hello-" + name;
+    }
+
+    @GetMapping("api/")
+    @ResponseBody
+    public Hello helloApi(@RequestParam("name") String name) {
+        Hello hello = new Hello();
+        hello.setName(name);
+        return hello;
+    }
+
+    static class Hello {
+        private String name;
+        public String getName(){return name;}
+        public void setName(String name) {this.name = name;}
     }
 }
