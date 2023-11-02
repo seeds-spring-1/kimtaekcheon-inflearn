@@ -1,9 +1,14 @@
-package com.seed.spring.inflearnstudy.service;
+package com.seed.spring.inflearnstudy;
 
+import com.seed.spring.inflearnstudy.repository.JdbcTemplateMemberRepository;
 import com.seed.spring.inflearnstudy.repository.MemberRepository;
 import com.seed.spring.inflearnstudy.repository.MemoryMemberRepository;
+import com.seed.spring.inflearnstudy.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import javax.sql.DataSource;
 
 // 스프링이 설정클래스에 명시된 대로 자동으로 의존성을 주입해준다.
 // Controller에서 Autowired로 의존성을 요구할 때 스프링이 이 설정 클래스를 통해
@@ -15,6 +20,12 @@ import org.springframework.context.annotation.Configuration;
 // ** 다른 코드를 손대지 않고 변경할 수 있다. **
 @Configuration
 public class SpringConfig {
+    private DataSource dataSource;
+
+    @Autowired
+    public SpringConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Bean
     public MemberService memberService() {
@@ -23,6 +34,7 @@ public class SpringConfig {
 
     @Bean
     public MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
+//        return new MemoryMemberRepository();
+        return new JdbcTemplateMemberRepository(dataSource);
     }
 }
