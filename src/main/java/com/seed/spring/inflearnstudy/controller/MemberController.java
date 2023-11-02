@@ -17,8 +17,21 @@ import org.springframework.stereotype.Controller;
 public class MemberController {
     private final MemberService memberService;
 
+    // 필드 주입
+    // 중간에 어떤 로직이 들어가야한다면 사용할 수 없는 방법이다.
+    // @Autowired private final MemberService memberService;
+
+    // 생성자 주입
+    // best practice
     @Autowired
     public MemberController(MemberService memberService){
         this.memberService = memberService;
     }
+
+    // setter 주입
+    // 항상 public으로 설정되어 있어야 한다.
+    // 중간에 바뀔 가능성이 있으니까 좋지는 않다.
+    // public void setMemberService(MemberService memberService) {
+    //     this.memberService = memberService;
+    // }
 }
