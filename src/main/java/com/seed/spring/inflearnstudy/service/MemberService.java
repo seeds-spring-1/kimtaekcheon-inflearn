@@ -3,13 +3,17 @@ package com.seed.spring.inflearnstudy.service;
 import com.seed.spring.inflearnstudy.domain.Member;
 import com.seed.spring.inflearnstudy.repository.MemberRepository;
 import com.seed.spring.inflearnstudy.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MemberService {
-    private MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
