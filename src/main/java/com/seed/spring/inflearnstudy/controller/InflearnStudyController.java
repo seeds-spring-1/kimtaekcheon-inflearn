@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class InflearnStudyController {
     // '/'url에 대해 GET요청이 수신될 때 이 함수가 실행됨
-    @GetMapping("/")
+    @GetMapping("/123")
     public String doSomething(Model model) {
         model.addAttribute("data", "Hello-data");
 
