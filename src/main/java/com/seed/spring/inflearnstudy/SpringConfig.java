@@ -1,5 +1,6 @@
 package com.seed.spring.inflearnstudy;
 
+import com.seed.spring.inflearnstudy.aop.TimeTraceAop;
 import com.seed.spring.inflearnstudy.domain.JpaMemberRepository;
 import com.seed.spring.inflearnstudy.repository.MemberRepository;
 import com.seed.spring.inflearnstudy.service.MemberService;
@@ -29,6 +30,12 @@ public class SpringConfig {
     public MemberService memberService() {
         return new MemberService(memberRepository);
     }
+
+    // TimeTraceAop클래스를 @Bean으로 등록하지 않은 이유
+    // 이미 @Component 어노테이션으로 컴포넌트 스캔을 통해 등록하도록 작성했기 때문이다.
+    // @Bean을 통해 여기서 등록할 수 있는 방법과
+    // @Component으로 컴포넌트 스캔을 하는 방법이 있다.
+
 
 //    @Bean
 //    public MemberRepository memberRepository() {
