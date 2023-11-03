@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Repository
+//@Repository
 public class JdbcTemplateMemberRepository implements MemberRepository{
     private final JdbcTemplate jdbcTemplate;
 
@@ -55,10 +55,6 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
         return jdbcTemplate.query("SELECT * FROM MEMBER", memberRowMapper());
     }
 
-    @Override
-    public void clearStore() {
-        jdbcTemplate.update("DELETE FROM MEMBER");
-    }
 
     // ResultSet으로 전달된 데이터를,
     // Generic에 주어진 타입으로 가공하여 반환한다.

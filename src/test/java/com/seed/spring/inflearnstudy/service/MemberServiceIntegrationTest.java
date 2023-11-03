@@ -19,11 +19,6 @@ public class MemberServiceIntegrationTest {
     @Autowired
     MemberRepository memberRepository;
 
-    @BeforeEach
-    public void clear() {
-        memberRepository.clearStore();
-    }
-
     @Test
     public void 회원가입() {
         Member member = new Member();

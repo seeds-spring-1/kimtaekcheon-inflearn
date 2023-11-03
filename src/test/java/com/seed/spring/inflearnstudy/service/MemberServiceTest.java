@@ -19,12 +19,6 @@ public class MemberServiceTest {
         memberService = new MemberService(memberRepository);
     }
 
-
-    @AfterEach
-    void clear() {
-        // repository의 store변수가 static이라서 초기화를 할 수 있다.
-        memberRepository.clearStore();
-    }
     @Test
     void join() {
         // given
